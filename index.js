@@ -91,9 +91,10 @@ LightServer.prototype.start = function () {
       app.use(history({ index: _this.options.historyindex }))
     }
 
+    var redirect = Object.is(_this.options.redirect, undefined) ? false : _this.options.redirect
     app.use(
       _this.options.servePrefix || '',
-      serveStatic(_this.options.serve, { extensions: ['html'], redirect: false, fallthrough: true })
+      serveStatic(_this.options.serve, { extensions: ['html'], redirect: redirect, fallthrough: true })
     )
     app.use(
       _this.options.servePrefix || '',
